@@ -268,7 +268,7 @@ class BasicTrainer:
 
             loss /= accumulation_steps
 
-            loss.backward()
+            loss.backward(retain_graph=True)
             torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.gradient_clipping)
 
             if engine.state.iteration % accumulation_steps == 0:
